@@ -42,8 +42,42 @@ import java.math.BigDecimal;
 
 import javax.annotation.Nullable;
 
+<<<<<<< Updated upstream
+=======
+class CustomMediaController extends MediaController {
+    public CustomMediaController(Context context) {
+        super(context);
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int keyCode = event.getKeyCode();
+        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
+            Activity activity = ((ThemedReactContext) this.getContext()).getCurrentActivity();
+            if (activity != null) {
+                activity.onBackPressed();
+            }
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
+    }
+}
+
+class CustomScalableVideoView extends ScalableVideoView {
+    public CustomScalableVideoView(Context context) {
+        super(context, null);
+    }
+
+    public int getCurrentPosition() {
+        if (mMediaPlayer == null) return 0;
+        return mMediaPlayer.getCurrentPosition();
+    }
+}
+
+
+>>>>>>> Stashed changes
 @SuppressLint("ViewConstructor")
-public class ReactVideoView extends ScalableVideoView implements
+public class ReactVideoView extends CustomScalableVideoView implements
     MediaPlayer.OnPreparedListener,
     MediaPlayer.OnErrorListener,
     MediaPlayer.OnBufferingUpdateListener,
