@@ -3,6 +3,7 @@ package com.brentvatne.react;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.View;
@@ -42,8 +44,6 @@ import java.math.BigDecimal;
 
 import javax.annotation.Nullable;
 
-<<<<<<< Updated upstream
-=======
 class CustomMediaController extends MediaController {
     public CustomMediaController(Context context) {
         super(context);
@@ -75,7 +75,6 @@ class CustomScalableVideoView extends ScalableVideoView {
 }
 
 
->>>>>>> Stashed changes
 @SuppressLint("ViewConstructor")
 public class ReactVideoView extends CustomScalableVideoView implements
     MediaPlayer.OnPreparedListener,
@@ -85,7 +84,7 @@ public class ReactVideoView extends CustomScalableVideoView implements
     MediaPlayer.OnCompletionListener,
     MediaPlayer.OnInfoListener,
     LifecycleEventListener,
-    MediaController.MediaPlayerControl {
+    CustomMediaController.MediaPlayerControl {
 
     public enum Events {
         EVENT_LOAD_START("onVideoLoadStart"),
@@ -146,7 +145,7 @@ public class ReactVideoView extends CustomScalableVideoView implements
     private Handler mProgressUpdateHandler = new Handler();
     private Runnable mProgressUpdateRunnable = null;
     private Handler videoControlHandler = new Handler();
-    private MediaController mediaController;
+    private CustomMediaController mediaController;
 
     private String mSrcUriString = null;
     private String mSrcType = "mp4";
@@ -260,7 +259,7 @@ public class ReactVideoView extends CustomScalableVideoView implements
 
     private void initializeMediaControllerIfNeeded() {
         if (mediaController == null) {
-            mediaController = new MediaController(this.getContext());
+            mediaController = new CustomMediaController(this.getContext());
         }
     }
 
