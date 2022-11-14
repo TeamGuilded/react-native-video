@@ -68,6 +68,7 @@ class CustomScalableVideoView extends ScalableVideoView {
         super(context, null);
     }
 
+    @Override
     public int getCurrentPosition() {
         if (mMediaPlayer == null) return 0;
         return mMediaPlayer.getCurrentPosition();
