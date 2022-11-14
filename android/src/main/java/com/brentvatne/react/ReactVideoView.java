@@ -63,9 +63,21 @@ class CustomMediaController extends MediaController {
     }
 }
 
+class CustomScalableVideoView extends ScalableVideoView {
+    public CustomScalableVideoView(Context context) {
+        super(context, null);
+    }
+
+    @Override
+    public int getCurrentPosition() {
+        if (mMediaPlayer == null) return 0;
+        return mMediaPlayer.getCurrentPosition();
+    }
+}
+
 
 @SuppressLint("ViewConstructor")
-public class ReactVideoView extends ScalableVideoView implements
+public class ReactVideoView extends CustomScalableVideoView implements
     MediaPlayer.OnPreparedListener,
     MediaPlayer.OnErrorListener,
     MediaPlayer.OnBufferingUpdateListener,
