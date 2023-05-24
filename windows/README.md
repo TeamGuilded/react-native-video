@@ -21,7 +21,7 @@ npm install react-native@^0.63 --only=dev
 npm install react-native-windows@^0.63 --only=dev
 ```
 
-Now you should be able to open `ReactNativeVideoCPP.sln` in Visual Studio and build the project.
+Now you should be able to open `ReactNativeVideoCPP.sln` in Visual Studio and build the project. Test
 
 ## RNW 0.62
 
